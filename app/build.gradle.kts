@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "no.beiningbogen.oboardinginternal"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "no.beiningbogen.oboardinginternal"
