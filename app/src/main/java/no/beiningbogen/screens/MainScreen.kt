@@ -18,12 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.semantics.Role.Companion.Button
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import no.beiningbogen.oboardinginternal.R
 
 @Composable
-fun MyApp() {
+fun MainScreen(navController: NavController) {
     // Box to center the content
     Box(
         modifier = Modifier
@@ -42,7 +42,9 @@ fun MyApp() {
                 .height(64.dp)
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(30.dp)),
                 colors = ButtonDefaults.buttonColors(Color.White),
-                onClick = { /* TODO: Handle Nyansatt button click */ }) {
+                onClick = {
+                    navController.navigate("nyansatt")
+                }) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.nyansatt),
                     contentDescription = "Nyansatt",
@@ -56,7 +58,7 @@ fun MyApp() {
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(30.dp)),
                 colors = ButtonDefaults.buttonColors(Color.White),
                 onClick = {
-                    /* TODO: Handle Mentor button click */
+                    navController.navigate("mentor")
                 }) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.mentor),
