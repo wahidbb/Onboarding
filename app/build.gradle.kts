@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -79,7 +80,19 @@ dependencies {
     // Jetpack Compose Integration
     implementation ("androidx.navigation:navigation-compose:2.7.5")
 
+    //Google service/firebase
+    implementation ("com.google.android.gms:play-services-auth:20.7.0")
 
+    // Firebase Authentication
+    implementation ("com.google.firebase:firebase-auth:22.2.0") // Use the latest version available
 
+    // Firebase Realtime Database
+    implementation ("com.google.firebase:firebase-database:20.3.0")
+
+    implementation("io.coil-kt:coil-compose:2.5.0")
+
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.6.2")
+
+    implementation ("com.google.android.gms:play-services-identity:18.0.1") // Use the latest version available
 
 }

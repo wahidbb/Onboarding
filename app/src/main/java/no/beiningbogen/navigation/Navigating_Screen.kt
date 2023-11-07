@@ -12,9 +12,12 @@ import no.beiningbogen.screens.NyansattScreen
 fun MyApp() {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "main_screen") {
-        composable("main_screen") { MainScreen(navController) }
-        composable("nyansatt") { NyansattScreen() }
-        composable("mentor") { MentorScreen() }
+        composable("main_screen") {
+            MainScreen(navController) }
+        composable("nyansatt") {
+            NyansattScreen() }
+        composable("mentor") {
+            MentorScreen() }
         // Add more destinations as needed
     }
 }
