@@ -19,17 +19,17 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.auth.api.identity.Identity
-import com.google.android.gms.auth.api.identity.Identity.getSignInClient
 import kotlinx.coroutines.launch
 import no.beiningbogen.googleauthentication.profile.ProfileScreen
 import no.beiningbogen.googleauthentication.signin.GoogleAuthUiClient
 import no.beiningbogen.googleauthentication.signin.SignInScreen
 import no.beiningbogen.googleauthentication.signin.SignInViewModel
 import no.beiningbogen.oboardinginternal.ui.theme.OboardingInternalTheme
+import no.beiningbogen.screens.MainTaskScreen
+import no.beiningbogen.screens.RoleSelectionScreen
 
 
 class MainActivity : ComponentActivity() {
-
     private val googleAuthUiClient by lazy {
         GoogleAuthUiClient(
             context = applicationContext,
@@ -45,7 +45,12 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                 ) {
                     val navController = rememberNavController()
-                    NavHost(navController = navController, startDestination = "sign_in") {
+                    NavHost(navController = navController, startDestination = "main_screen") {
+                        composable("main_screen") {
+//                            NavHost(navController = navController, startDestination = "profile") {
+//                                composable("profile") {
+                            RoleSelectionScreen(navController)
+                        }
                         composable("sign_in") {
                             val viewModel = viewModel<SignInViewModel>()
                             val state by viewModel.state.collectAsStateWithLifecycle()
@@ -82,7 +87,6 @@ class MainActivity : ComponentActivity() {
                                     viewModel.resetState()
                                 }
                             }
-
                             SignInScreen(
                                 state = state,
                                 onSignInClick = {
@@ -110,12 +114,16 @@ class MainActivity : ComponentActivity() {
                                         ).show()
                                         navController.popBackStack()
                                     }
-                                }
+                                },
+                                navController
                             )
                         }
+                        composable("game_screen") {
+                            MainTaskScreen()
                     }
                 }
             }
         }
     }
-}
+}}
+

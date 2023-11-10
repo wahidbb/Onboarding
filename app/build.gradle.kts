@@ -95,4 +95,5 @@ dependencies {
 
     implementation ("com.google.android.gms:play-services-identity:18.0.1") // Use the latest version available
 
+    implementation ("com.google.accompanist:accompanist-drawablepainter:0.32.0")
 }

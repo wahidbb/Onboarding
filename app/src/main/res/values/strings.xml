@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">OboardingInternal</string>
+    <string name="web_client_id">720477761639-4brm7d4f8p2h404ul104mq5aodfqm95v.apps.googleusercontent.com</string>
+    <string name="welcome_txt">Welcome to Beining &amp; Bogen. Before continuing, you may customize your avatar so it looks the way you want it to.\n You can edit it later on as well.</string>
+
 </resources>

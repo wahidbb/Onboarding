@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "720477761639",
+    "project_id": "oboardinginternal",
+    "storage_bucket": "oboardinginternal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:720477761639:android:a8aa651d2b3735d6e5a4c2",
+        "android_client_info": {
+          "package_name": "no.beiningbogen.oboardinginternal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "720477761639-bngqq7rg1ust7nlrrkjvf6q29bl49gs1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "no.beiningbogen.oboardinginternal",
+            "certificate_hash": "1534f5edbd4bfdeba89ceb1357ea7467677bd416"
+          }
+        },
+        {
+          "client_id": "720477761639-4brm7d4f8p2h404ul104mq5aodfqm95v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqoJkWBgARXeVg985YqQTEL5SKd-MxW7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "720477761639-4brm7d4f8p2h404ul104mq5aodfqm95v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

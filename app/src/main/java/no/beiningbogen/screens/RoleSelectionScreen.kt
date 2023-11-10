@@ -23,7 +23,7 @@ import androidx.navigation.NavController
 import no.beiningbogen.oboardinginternal.R
 
 @Composable
-fun MainScreen(navController: NavController) {
+fun RoleSelectionScreen(navController: NavController) {
     // Box to center the content
     Box(
         modifier = Modifier
@@ -43,7 +43,7 @@ fun MainScreen(navController: NavController) {
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(30.dp)),
                 colors = ButtonDefaults.buttonColors(Color.White),
                 onClick = {
-                    navController.navigate("nyansatt")
+                    navController.navigate("sign_in")
                 }) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.nyansatt),
@@ -58,7 +58,7 @@ fun MainScreen(navController: NavController) {
                 .border(1.dp, Color.Black, shape = RoundedCornerShape(30.dp)),
                 colors = ButtonDefaults.buttonColors(Color.White),
                 onClick = {
-                    navController.navigate("mentor")
+                    navController.navigate("sign_in")
                 }) {
                 Icon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.mentor),
