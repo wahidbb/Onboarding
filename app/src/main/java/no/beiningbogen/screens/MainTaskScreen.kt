@@ -2,24 +2,16 @@ package no.beiningbogen.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -32,13 +24,14 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import no.beiningbogen.Bars.MainTaskScreenTopBar
+import androidx.navigation.NavController
+import no.beiningbogen.bars.MainTaskScreenTopBar
 import no.beiningbogen.oboardinginternal.R
 
 @Composable
-fun MainTaskScreen() {
+fun MainTaskScreen(onSignOut: () -> Unit, navController: NavController) {
     Column(modifier = Modifier.fillMaxSize()) {
-        // Top bar with back button and title
+        // Top bar with back button, title, and sign out button
         val markerFelt = FontFamily(
             Font(R.font.marker_felt)
         )
@@ -46,8 +39,10 @@ fun MainTaskScreen() {
             title = "Wahid\nJunior Android developer",
             score = "29",
             onBackClicked = {
-                // Handle back button click here
-            }, // Applying a black background
+                navController.navigate("profile")
+            },
+            onSignOut = onSignOut // Pass the sign-out action
+            , navController
         )
         Box(
             modifier = Modifier
@@ -60,8 +55,7 @@ fun MainTaskScreen() {
                 modifier = Modifier.fillMaxSize(),
                 contentScale = ContentScale.Crop
             )
-            Box(
-            ) {
+            Box(modifier = Modifier) {
                 // Characters and Houses
                 Row(modifier = Modifier.padding(start = 146.dp, top = 30.dp, end = 213.dp)) {
                     // Character: Olav
@@ -238,10 +232,3 @@ fun MainTaskScreen() {
     }
 }
 
-@Preview
-@Composable
-fun SquareComposablePreview() {
-    Box(Modifier.background(Color.Yellow)) {
-        MainTaskScreen()
-    }
-}

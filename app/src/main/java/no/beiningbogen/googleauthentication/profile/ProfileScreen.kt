@@ -38,8 +38,7 @@ fun ProfileScreen(
     userData: UserData?,
 
     //TODO Going to use this signout in correct place
-    onSignOut: () -> Unit,
-    navController:NavController
+    navController: NavController
 ) {
     val markerFelt = FontFamily(
         Font(R.font.marker_felt)
@@ -113,13 +112,6 @@ fun ProfileScreen(
         }
         Spacer(modifier = Modifier.height(16.dp))
         //TODO Going to use this signout in correct place
-//        Button(
-//            onClick = onSignOut,
-//            modifier = Modifier
-//                .align(Alignment.BottomCenter)
-//                .padding(bottom = 16.dp)
-//                .background(Color.White)
-//        ) {
         Icon(
             painter = painterResource(id = R.drawable.done_button),
             contentDescription = "Button Icon",

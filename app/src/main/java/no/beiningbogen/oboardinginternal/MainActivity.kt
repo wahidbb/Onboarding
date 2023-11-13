@@ -36,6 +36,7 @@ class MainActivity : ComponentActivity() {
             oneTapClient = Identity.getSignInClient(applicationContext)
         )
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -47,8 +48,6 @@ class MainActivity : ComponentActivity() {
                     val navController = rememberNavController()
                     NavHost(navController = navController, startDestination = "main_screen") {
                         composable("main_screen") {
-//                            NavHost(navController = navController, startDestination = "profile") {
-//                                composable("profile") {
                             RoleSelectionScreen(navController)
                         }
                         composable("sign_in") {
@@ -56,7 +55,7 @@ class MainActivity : ComponentActivity() {
                             val state by viewModel.state.collectAsStateWithLifecycle()
 
                             LaunchedEffect(key1 = Unit) {
-                                if(googleAuthUiClient.getSignedInUser() != null) {
+                                if (googleAuthUiClient.getSignedInUser() != null) {
                                     navController.navigate("profile")
                                 }
                             }
@@ -64,7 +63,7 @@ class MainActivity : ComponentActivity() {
                             val launcher = rememberLauncherForActivityResult(
                                 contract = ActivityResultContracts.StartIntentSenderForResult(),
                                 onResult = { result ->
-                                    if(result.resultCode == RESULT_OK) {
+                                    if (result.resultCode == RESULT_OK) {
                                         lifecycleScope.launch {
                                             val signInResult = googleAuthUiClient.signInWithIntent(
                                                 intent = result.data ?: return@launch
@@ -76,7 +75,7 @@ class MainActivity : ComponentActivity() {
                             )
 
                             LaunchedEffect(key1 = state.isSignInSuccessful) {
-                                if(state.isSignInSuccessful) {
+                                if (state.isSignInSuccessful) {
                                     Toast.makeText(
                                         applicationContext,
                                         "Sign in successful",
@@ -103,7 +102,11 @@ class MainActivity : ComponentActivity() {
                         }
                         composable("profile") {
                             ProfileScreen(
-                                userData = googleAuthUiClient.getSignedInUser(),
+                                userData = googleAuthUiClient.getSignedInUser(), navController
+                            )
+                        }
+                        composable("game_screen") {
+                            MainTaskScreen(
                                 onSignOut = {
                                     lifecycleScope.launch {
                                         googleAuthUiClient.signOut()
@@ -112,18 +115,16 @@ class MainActivity : ComponentActivity() {
                                             "Signed out",
                                             Toast.LENGTH_LONG
                                         ).show()
-                                        navController.popBackStack()
+                                        navController.navigate("main_screen")
                                     }
-                                },
-                                navController
+                                }, navController
                             )
+
                         }
-                        composable("game_screen") {
-                            MainTaskScreen()
                     }
                 }
             }
         }
     }
-}}
+}
 
