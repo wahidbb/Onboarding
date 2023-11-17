@@ -1,7 +1,8 @@
-package no.beiningbogen.screens
+package no.beiningbogen.screens.mainscreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -97,12 +98,16 @@ fun MainTaskScreen(onSignOut: () -> Unit, navController: NavController) {
                 }
 
                 Row(modifier = Modifier.padding(start = 255.dp, top = 230.dp, end = 9.dp)) {
+//                    navController.navigate("task_screen")
                     Image(
                         painter = painterResource(id = R.drawable.house),
                         contentDescription = "House",
                         modifier = Modifier
                             .width(60.5.dp)
                             .height(113.dp)
+                            .clickable { // Add this clickable modifier
+                                navController.navigate("task_screen")
+                            }
                     )
                 }
                 Row(modifier = Modifier.padding(start = 260.dp, top = 330.dp, end = 9.dp)) {

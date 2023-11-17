@@ -15,9 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.google.android.gms.auth.api.identity.Identity
 import kotlinx.coroutines.launch
 import no.beiningbogen.googleauthentication.profile.ProfileScreen
@@ -25,8 +27,10 @@ import no.beiningbogen.googleauthentication.signin.GoogleAuthUiClient
 import no.beiningbogen.googleauthentication.signin.SignInScreen
 import no.beiningbogen.googleauthentication.signin.SignInViewModel
 import no.beiningbogen.oboardinginternal.ui.theme.OboardingInternalTheme
-import no.beiningbogen.screens.MainTaskScreen
+import no.beiningbogen.screens.mainscreen.MainTaskScreen
 import no.beiningbogen.screens.RoleSelectionScreen
+import no.beiningbogen.screens.WebViewScreen
+import no.beiningbogen.screens.taskscreen.TaskScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -121,6 +125,29 @@ class MainActivity : ComponentActivity() {
                             )
 
                         }
+                        composable("task_screen") {
+                            TaskScreen(
+                                onSignOut = {
+                                    lifecycleScope.launch {
+                                        googleAuthUiClient.signOut()
+                                        Toast.makeText(
+                                            applicationContext,
+                                            "Signed out",
+                                            Toast.LENGTH_LONG
+                                        ).show()
+                                        navController.navigate("main_screen")
+                                    }
+                                }, navController
+                            )
+
+                        }
+                        composable(
+                            "webview/{url}",
+                            arguments = listOf(navArgument("url") { type = NavType.StringType })
+                        ) { backStackEntry ->
+                            WebViewScreen(backStackEntry.arguments?.getString("url") ?: "")
+                        }
+
                     }
                 }
             }

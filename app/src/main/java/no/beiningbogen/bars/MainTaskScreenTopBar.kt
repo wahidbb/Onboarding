@@ -22,6 +22,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.Font
@@ -43,6 +45,18 @@ fun MainTaskScreenTopBar(
         Font(R.font.marker_felt) // Replace with your font resource ID
     )
     TopAppBar(
+        // Other parameters like title, actions, etc.
+        modifier = Modifier
+            .drawBehind {
+                val strokeWidth = 1 * density // Replace 1 with your desired stroke width
+                val y = size.height - strokeWidth / 2
+                drawLine(
+                    Color.Black,
+                    Offset(0f, y),
+                    Offset(size.width, y),
+                    strokeWidth
+                )
+            },
         title = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
